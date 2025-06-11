@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ingredientes</title>
+</head>
+<body>
+<h2>Lista de Ingredientes</h2>
+<form action="/ingredientes" method="post">
+    Nombre: <input type="text" name="nombre" required>
+    Tipo: <select name="tipo">
+        <option>Proteína</option>
+        <option>Carbohidrato</option>
+        <option>Grasa</option>
+    </select>
+    <button type="submit">Agregar</button>
+</form>
+<br>
+<table border="1">
+    <tr><th>Nombre</th><th>Tipo</th><th>Acciones</th></tr>
+    <tr th:each="ing : ${ingredientes}">
+        <td th:text="${ing.nombre}">Nombre</td>
+        <td th:text="${ing.tipo}">Tipo</td>
+        <td><a th:href="@{'/ingredientes/eliminar/' + ${ing.id}}">Eliminar</a></td>
+    </tr>
+</table>
+<a href="/">Volver al inicio</a>
+</body>
+</html>
